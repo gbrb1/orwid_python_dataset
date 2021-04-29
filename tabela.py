@@ -1,20 +1,18 @@
-import pyautogui as auto
 import pandas as pd
-import openpyxl
 from IPython.display import display
 
 
-def main():
+class Tabela():
     # carregando o xlsx na memória
-    data = pd.read_excel(r"dados/owid-covid-data.xlsx")
+    dados = pd.read_excel(r"dados/owid-covid-data.xlsx")
 
-    display(data.info())
+    display(dados.info())
     print("\n")
 
     # deletando todas as colunas que tem todos os valores nulos
-    data = data.dropna(how='all', axis=1)
+    dados = dados.dropna(how='all', axis=1)
 
-    display(data.info())
+    display(dados.info())
     print("\n")
 
     # armazenando as colunas a serem removidas em um array
@@ -25,12 +23,16 @@ def main():
             'people_vaccinated_per_hundred', 'new_vaccinations_smoothed_per_million']
 
     # removendo da tabela as colunas armazenadas no array
-    data = data.drop(columns=drop)
+    dados = dados.drop(columns=drop)
 
-    display(data.info())
+    display(dados.info())
     print("\n")
-    # toDo(converter strings para int/float)
 
+    # removendo os traços da coluna date
+    dados['date'] = dados['date'].str.replace(r'-', '')
 
-if __name__ == "__main__":
-    main()
+    # convertendo a coluna 'date' de string (object) para datetime
+    dados['date'] = pd.to_datetime(
+        dados['date'], format='%Y%m%d', errors='coerce')
+    display(dados)
+    display(dados.info())

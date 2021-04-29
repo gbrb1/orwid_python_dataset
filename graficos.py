@@ -1,9 +1,7 @@
-import tabela
+from tabela import Tabela
+from IPython.display import display
 
 
-def main():
-    print(tabela.main().data)
-
-
-if __name__ == "__main__":
-    main()
+class Graficos():
+    dados = Tabela().dados
+    display(dados)
