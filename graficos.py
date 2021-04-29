@@ -2,7 +2,7 @@ import tabela
 
 
 def main():
-    print(tabela.data)
+    print(tabela.main().data)
 
 
 if __name__ == "__main__":
