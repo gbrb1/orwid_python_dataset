@@ -63,20 +63,14 @@ class Tabela():
     dados['new_cases_per_million'] = pd.to_numeric(
         dados['new_cases_per_million'])
 
-    # substituindo os valores NaN por 0
-    dados['new_deaths'] = dados['new_deaths'].fillna(0)
-
-    dados['total_deaths'] = dados['total_deaths'].fillna(0)
-
-    dados['total_deaths'] = dados['total_deaths'].fillna(0)
+    # substituindo os valores nulos por 0
+    dados = dados.fillna(0)
 
     # convertendo de float para int
     dados['new_deaths'] = dados['new_deaths'].apply(int)
 
     dados['total_deaths'] = dados['total_deaths'].apply(int)
 
-    dados['people_fully_vaccinated'] = dados['people_fully_vaccinated'].fillna(
-        0)
     dados['people_fully_vaccinated'] = dados['people_fully_vaccinated'].apply(
         int)
 

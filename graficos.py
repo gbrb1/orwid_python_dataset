@@ -1,7 +1,6 @@
-from tabela import Tabela
-from IPython.display import display
+from tabela import *
 
 
 class Graficos():
     dados = Tabela().dados
-    display(dados)
+    display(dados['total_tests_per_thousand'])
