@@ -7,20 +7,12 @@ class Tabela():
     dados = pd.read_excel(r"dados/owid-covid-data_IT.xlsx")
     mobi = pd.read_csv(r"dados/2020_IT_Region_Mobility_Report.csv")
 
-    display(dados.info())
-    display(mobi.info())
-    print("\n")
-
     # mantendo apenas as colunas desejadas
     dados = dados[['date', 'new_cases_per_million', 'total_deaths_per_million',
                    'people_fully_vaccinated_per_hundred', 'stringency_index', 'reproduction_rate']]
 
     mobi = mobi[['date', 'parks_percent_change_from_baseline', 'grocery_and_pharmacy_percent_change_from_baseline',
                  'workplaces_percent_change_from_baseline']]
-
-    display(dados.info())
-    display(mobi.info())
-    print("\n")
 
     # deletando todas as colunas onde todos os valores são nulos
     dados = dados.dropna(how='all', axis=1)
@@ -34,19 +26,11 @@ class Tabela():
     dados['date'] = dados['date'].str.replace(r'-', '')
     mobi['date'] = mobi['date'].str.replace(r'-', '')
 
-    display(dados['date'])
-    display(mobi['date'])
-    print("\n")
-
     # convertendo a coluna 'date' de string (object) para datetime
     dados['date'] = pd.to_datetime(
         dados['date'], format='%Y%m%d', errors='coerce')
     mobi['date'] = pd.to_datetime(
         mobi['date'], format='%Y%m%d', errors='coerce')
-
-    print(dados.info())
-    print(mobi.info())
-    print("\n")
 
     # trocando as virgulas por pontos, para poder converter de string para float
     dados['stringency_index'] = dados['stringency_index'].str.replace(
@@ -63,9 +47,6 @@ class Tabela():
 
     dados['reproduction_rate'] = dados['reproduction_rate'].str.replace(
         r',', '.')
-
-    display(dados['stringency_index'])
-    print("\n")
 
     # convertendo as strings para float
     dados['stringency_index'] = pd.to_numeric(dados['stringency_index'])
@@ -84,7 +65,3 @@ class Tabela():
 
     # substituindo os valores nulos por 0 em todas as colunas
     dados = dados.fillna(0)
-    mobi = mobi.fillna(0)
-
-    display(dados['people_fully_vaccinated_per_hundred'])
-    print("\n")
