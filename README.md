@@ -1,0 +1,1 @@
+Trabalho pra disciplina de inteligência artificial no curso de bacharelado em sistemas de informação na UFRRJ, que fiz em 2021. A intenção era exibir alguns graficos relacionados ao COVID-19 utilizando algumas bibliotecas de IA e tratamento e exibição de dados.
